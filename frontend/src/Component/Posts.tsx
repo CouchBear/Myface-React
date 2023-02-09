@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 export function Posts() {
     const [myData, setMyData] = useState<Page<PostModel> | null>(null);
     const [urlQuery, setUrlQuery] = useState<string | null>("/posts");
+    const [status, setStatus] = useState(Number);
+
     useEffect(() => {
         fetch(`http://localhost:3001${urlQuery}`)
             .then(response => response.json())
@@ -18,11 +20,24 @@ export function Posts() {
     if (!myData) {
         return <div>Waiting for data!</div>
     }
-    console.log(myData)
+
+    const handleClick = (e: any) => {
+
+        fetch(`http://localhost:3001/posts/${e.target.name}`, { method: 'POST' })
+            .then(response => setStatus(response.status))
+            .then(response => console.log(response))
+
+
+
+    }
+
     const posts = myData.results.map(post => {
         return (
             <div>
                 <img src={post.imageUrl} alt={post.message} />
+                <h3>{post.likedBy.length}</h3>
+                <button type="submit" name={`${post.id}/like`} onClick={e => { handleClick(e); console.log(post.likedBy.length) }}>Like</button>
+                <button type="submit" name={`${post.id}/dislike`} onClick={e => handleClick(e)}>Dislike</button>
                 <li>{post.createdAt.toString()}</li>
                 <li>{post.id}</li>
             </div>
