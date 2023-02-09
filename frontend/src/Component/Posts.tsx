@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Page } from '../../../src/models/api/page'
 import { PostModel } from '../../../src/models/api/postModel'
-import { PostUserModel } from '../../../src/models/api/postModel'
 import { Moment } from 'moment'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ export function Posts() {
     const [myData, setMyData] = useState<Page<PostModel> | null>(null);
     const [urlQuery, setUrlQuery] = useState<string | null>("/posts");
     const [status, setStatus] = useState(Number);
+
 
     useEffect(() => {
         fetch(`http://localhost:3001${urlQuery}`)
@@ -25,7 +25,7 @@ export function Posts() {
 
         fetch(`http://localhost:3001/posts/${e.target.name}`, { method: 'POST' })
             .then(response => setStatus(response.status))
-            .then(response => console.log(response))
+
 
 
 
@@ -35,8 +35,8 @@ export function Posts() {
         return (
             <div>
                 <img src={post.imageUrl} alt={post.message} />
-                <h3>{post.likedBy.length}</h3>
-                <button type="submit" name={`${post.id}/like`} onClick={e => { handleClick(e); console.log(post.likedBy.length) }}>Like</button>
+
+                <button type="submit" name={`${post.id}/like`} onClick={e => handleClick(e)}>Like</button>
                 <button type="submit" name={`${post.id}/dislike`} onClick={e => handleClick(e)}>Dislike</button>
                 <li>{post.createdAt.toString()}</li>
                 <li>{post.id}</li>
@@ -61,14 +61,5 @@ export function Posts() {
         </div>
     );
 }
-
-
-// <li>{post.id}</li>
-// <li>{post.message}</li>
-// <li>{post.imageUrl}</li>
-// <li>{post.createdAt.toString()}</li>
-// <li>{post.postedBy.id}</li>
-// <li>{post.likedBy.length}</li>
-// <li>{post.dislikedBy.length}</li>
 
 

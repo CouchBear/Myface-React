@@ -9,6 +9,7 @@ function NewUserForm(props: any) {
     const [coverImageUrl, setCoverImageUrl] = useState('');
     const [profileImageUrl, setProfileImageUrl] = useState('');
     const [status, setStatus] = useState(Number);
+    const [error, setError] = useState('');
 
     const handleSubmit = (e: any) => {
 
@@ -27,7 +28,16 @@ function NewUserForm(props: any) {
             })
         };
         fetch(`http://localhost:3001/users/create`, requestOptions)
-            .then(response => setStatus(response.status))
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                if (response.status === 200) { setStatus(response.status) }
+                else {
+                    // setError(response.errors);
+                    throw new Error(`${response.errors[0].param} is invalid`)
+                }
+            })
+            .catch(error => setError(error.message))
 
 
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -39,9 +49,9 @@ function NewUserForm(props: any) {
 
     return (
         <div>
-            {status === 200 && (
-                <Navigate to="/users" replace={true} />
-            )}
+            {status === 200 ?
+                <Navigate to="/users" replace={true} /> : <h2>{error}</h2>
+            }
             <form onSubmit={e => { handleSubmit(e); console.log("submitted form") }}>
                 <label>Name
                     <br />
