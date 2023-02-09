@@ -8,19 +8,25 @@ import User_Details from "./Component/User_Details"
 import { UserModel } from '../../src/models/api/userModel'
 import './Styles/app.scss';
 import NewUserForm from "./Component/NewUserForm"
+import NewPostForm from "./Component/NewPostForm"
+import Navbar from "./Component/NavBar"
+
 
 
 function App() {
 
   return (
     <Router>
+      <Navbar />
+
       <div className="App">
 
         <Routes>
-          <Route path="/posts"
-            element={<Posts />}>
-
+          <Route path="/posts">
+            <Route path="" element={<Posts />} />
+            <Route path="create" element={<NewPostForm />} />
           </Route>
+
           <Route path="/users" >
 
             <Route path="" element={<Users />} />

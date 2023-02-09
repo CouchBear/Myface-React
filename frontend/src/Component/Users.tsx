@@ -25,7 +25,7 @@ export function Users() {
     const userList = myData.results.map(userItem => {
         return (
             <div key={userItem.id}>
-                <li>{userItem.id}</li>
+                <img src={userItem.profileImageUrl} alt="user profile image" />
                 <Link to={`/users/${userItem.id}`}>{userItem.username}</Link>
 
             </div>
