@@ -8,52 +8,50 @@ function NewUserForm(props: any) {
     const [email, setEmail] = useState('');
     const [coverImageUrl, setCoverImageUrl] = useState('');
     const [profileImageUrl, setProfileImageUrl] = useState('');
-
+    const [status, setStatus] = useState(Number);
 
     const handleSubmit = (e: any) => {
-        const [status, setStatus] = useState('')
 
+        e.preventDefault();
 
         // POST request using fetch inside useEffect React hook
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: { name },
-                username: { username },
-                email: { email },
-                coverImageUrl: { coverImageUrl },
-                profileImageUrl: { profileImageUrl }
+                name: name,
+                username: username,
+                email: email,
+                coverImageUrl: coverImageUrl,
+                profileImageUrl: profileImageUrl
             })
         };
         fetch(`http://localhost:3001/users/create`, requestOptions)
-            .then(response => response.json())
-            .then(data => setStatus(data))
-            .then(data => console.log(data));
+            .then(response => setStatus(response.status))
+
 
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
 
 
-        console.log({ name });
-        console.log({ coverImageUrl });
 
-        e.preventDefault();
+
     }
 
     return (
         <div>
-            {status && (
+            {status === 200 && (
                 <Navigate to="/users" replace={true} />
             )}
             <form onSubmit={e => { handleSubmit(e); console.log("submitted form") }}>
-                <label>Name</label>
-                <br />
-                <input
-                    name='name'
-                    type='text'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
+                <label>Name
+                    <br />
+                    <input
+                        name='name'
+                        type='text'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                </label>
                 <label>Username</label>
                 <br />
                 <input
@@ -89,7 +87,7 @@ function NewUserForm(props: any) {
                     onChange={e => setProfileImageUrl(e.target.value)}
 
                 />
-                <button>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     );

@@ -1,6 +1,6 @@
 import express from "express";
-import {createUser, getPageOfUsers, getUser} from "../services/userService";
-import {CreateUserRequest} from "../models/api/createUserRequest";
+import { createUser, getPageOfUsers, getUser } from "../services/userService";
+import { CreateUserRequest } from "../models/api/createUserRequest";
 import { body, validationResult } from "express-validator";
 
 const router = express.Router();
@@ -21,15 +21,15 @@ router.post('/create/',
     body('profileImageUrl').notEmpty(),
     async (request, response) => {
 
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-        return response.status(400).json({errors: errors.array()});
-    }
-    const user = request.body;
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(400).json({ errors: errors.array() });
+        }
+        const user = request.body;
 
-    await createUser(user as CreateUserRequest);
-    return response.sendStatus(200)
-});
+        await createUser(user as CreateUserRequest);
+        return response.status(200).json({ status: 200 });
+    });
 
 router.get('/:userId/', async (request, response) => {
     const userId = parseInt(request.params.userId);
