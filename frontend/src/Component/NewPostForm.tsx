@@ -38,9 +38,9 @@ function NewPostForm(props: any) {
     }
 
     return (
-        <div>
+        <div className='page'>
             {status === 200 ?
-                <Navigate to="/posts" replace={true} /> : <h2>{error}</h2>
+                <Navigate to="/posts" replace={true} /> : <div className='error'>{error}</div>
             }
             <form onSubmit={e => { handleSubmit(e); console.log("submitted form") }}>
                 <label>Message</label>
@@ -51,7 +51,7 @@ function NewPostForm(props: any) {
                     value={message}
                     onChange={e => setName(e.target.value)}
                 />
-
+                <br />
                 <label>ImageUrl</label>
                 <br />
                 <input
@@ -61,9 +61,9 @@ function NewPostForm(props: any) {
                     onChange={e => setUsername(e.target.value)}
                 />
 
+                <br />
 
-
-                <button type="submit">Submit</button>
+                <button className='submitCreate' type="submit">Submit</button>
             </form>
         </div>
     );

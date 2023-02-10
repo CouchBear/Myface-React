@@ -27,52 +27,53 @@ export default function User_Details() {
     }
     console.log(userData.name)
 
-    const postList = userData.posts.map((post) => {
+    const postList = userData.posts.slice(0, 6).map((post) => {
         return (
             <div className='card'>
-                <div className='card_image'> <img src={post.imageUrl} /></div>
+                <img className='card_image' src={post.imageUrl} />
                 <div className='card_body'>
-                    <div>{post.createdAt.toString()}</div>
-                    <div>{post.message}</div>
+                    <div className='post_date'>{post.createdAt.toString()}</div>
+                    <div className='post_message'>{post.message}</div>
                 </div>
             </div>
         );
     })
 
-    const likeList = userData.likes.map((post) => {
+    const likeList = userData.likes.slice(0, 6).map((post) => {
         return (
             <div className='card'>
-                <div className='card_image'><img src={post.imageUrl} /></div>
+                <img className='card_image' src={post.imageUrl} />
                 <div className='card_body'>
-                    <div>{post.createdAt.toString()}</div>
-                    <div>{post.message}</div>
+                    <div className='post_date'>{post.createdAt.toString()}</div>
+                    <div className='post_message'>{post.message}</div>
                 </div>
             </div>
         );
     })
 
-    const dislikeList = userData.dislikes.map((post) => {
+    const dislikeList = userData.dislikes.slice(0, 6).map((post) => {
         return (
             <div className='card'>
-                <div className='card_image'><img src={post.imageUrl} /></div>
+                <img className='card_image' src={post.imageUrl} />
                 <div className='card_body'>
-                    <div>{post.createdAt.toString()}</div>
-                    <div>{post.message}</div>
+                    <div className='post_date'>{post.createdAt.toString()}</div>
+                    <div className='post_message'>{post.message}</div>
                 </div>
             </div>
         );
     })
 
     return (
-        <div className='main'>
+        <div className='page'>
             <section className='user'>
                 <img className='coverImage' src={userData.coverImageUrl} alt="cover image" />
+                <div className='opaque'></div>
                 <div className='profile'>
                     <img className='profile_image' src={userData.profileImageUrl} alt="profile image" />
                     <div className='profile_body'>
-                        <div className='profile_name'>{userData.name}</div>
-                        <div>{userData.username}</div>
-                        <div>{userData.email}</div>
+                        <p className='profile_name'>{userData.name}</p>
+                        <p>{userData.username}</p>
+                        <p>{userData.email}</p>
                     </div>
                 </div>
 
@@ -80,14 +81,17 @@ export default function User_Details() {
             <section className='posts_box'>
                 <h4>My posts</h4>
                 <div className='posts'>{postList}</div>
+                <button className='load_button'>Load More</button>
             </section>
             <section className='posts_box'>
-                <h4>My Likes</h4>
+                <h4>{`Posts ${userData.name} Liked`}</h4>
                 <div className='posts'>{likeList}</div>
+                <button className='load_button'>Load More</button>
             </section>
             <section className='posts_box'>
-                <h4>My dislikes</h4>
+                <h4>{`Posts ${userData.name} Disliked`}</h4>
                 <div className='posts'>{dislikeList}</div>
+                <button className='load_button'>Load More</button>
             </section>
 
 

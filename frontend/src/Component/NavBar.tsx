@@ -13,10 +13,10 @@ const navbar = () => {
                 <Link to="/users">Users</Link>
             </div>
             <div className='navbar_item'>
-                <Link to="/users/create">New User</Link>
+                <Link to="/users/create">NewUser</Link>
             </div>
             <div className='navbar_item'>
-                <Link to="/posts/create">New Post</Link>
+                <Link to="/posts/create">NewPost</Link>
             </div>
         </header>
     );

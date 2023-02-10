@@ -1,9 +1,9 @@
-import {Page} from "../models/api/page";
-import {UserModel} from "../models/api/userModel";
+import { Page } from "../models/api/page";
+import { UserModel } from "../models/api/userModel";
 import * as userRepo from "../repos/userRepo";
-import {getPosts, getPostsByUserInteraction} from "../repos/postRepo";
-import {User} from "../models/database/user";
-import {CreateUserRequest} from "../models/api/createUserRequest";
+import { getPosts, getPostsByUserInteraction } from "../repos/postRepo";
+import { User } from "../models/database/user";
+import { CreateUserRequest } from "../models/api/createUserRequest";
 
 export async function getPageOfUsers(page: number, pageSize: number): Promise<Page<UserModel>> {
     const users = await userRepo.getUsers(page, pageSize);
@@ -41,7 +41,7 @@ async function toUserModel(user: User): Promise<UserModel> {
         email: user.email,
         coverImageUrl: user.coverImageUrl,
         profileImageUrl: user.profileImageUrl,
-        posts: await getPosts(1, 10, {postedById: user.id}),
+        posts: await getPosts(1, 10, { postedById: user.id }),
         likes: await getPostsByUserInteraction(1, 10, user.id, "LIKE"),
         dislikes: await getPostsByUserInteraction(1, 10, user.id, "DISLIKE"),
     };

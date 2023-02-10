@@ -48,9 +48,9 @@ function NewUserForm(props: any) {
     }
 
     return (
-        <div>
+        <div className='page'>
             {status === 200 ?
-                <Navigate to="/users" replace={true} /> : <h2>{error}</h2>
+                <Navigate to="/users" replace={true} /> : <div className='error'>{error}</div>
             }
             <form onSubmit={e => { handleSubmit(e); console.log("submitted form") }}>
                 <label>Name
@@ -62,6 +62,7 @@ function NewUserForm(props: any) {
                         onChange={e => setName(e.target.value)}
                     />
                 </label>
+                <br />
                 <label>Username</label>
                 <br />
                 <input
@@ -70,6 +71,7 @@ function NewUserForm(props: any) {
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                 />
+                <br />
                 <label>Email</label>
                 <br />
                 <input
@@ -79,6 +81,7 @@ function NewUserForm(props: any) {
                     onChange={e => setEmail(e.target.value)}
 
                 />
+                <br />
                 <label>Cover Image URL</label>
                 <br />
                 <input
@@ -88,6 +91,7 @@ function NewUserForm(props: any) {
                     onChange={e => setCoverImageUrl(e.target.value)}
 
                 />
+                <br />
                 <label>Profile Image URL</label>
                 <br />
                 <input
@@ -97,7 +101,8 @@ function NewUserForm(props: any) {
                     onChange={e => setProfileImageUrl(e.target.value)}
 
                 />
-                <button type="submit">Submit</button>
+                <br />
+                <button className='submitCreate' type="submit">Submit</button>
             </form>
         </div>
     );

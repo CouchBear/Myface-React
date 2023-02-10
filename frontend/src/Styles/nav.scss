@@ -8,18 +8,23 @@ $backgroundColor_black: #151820 !default;
     color: white;
     font-family: Helvetica;
     font-weight: 300;
-    margin-left: 50px;
+    display: flex;
+    align-items: center;
+
+    height: 60px;
 }
 
 
-.navbar__title {
+.navbar_title {
     margin-right: auto;
-    font-size: 150%;
+    font-size: 1em;
     padding: 12px 16px;
 }
 
-.navbar__item {
+.navbar_item {
     padding: 16px 16px;
     cursor: pointer;
     vertical-align: middle;
+    font-size: 0.75em;
+    color: white;
 }

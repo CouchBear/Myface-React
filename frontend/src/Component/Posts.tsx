@@ -31,13 +31,20 @@ export function Posts() {
 
     }
 
+
     const posts = myData.results.map(post => {
         return (
             <div className='card'>
-                <img className='card_image' src={post.imageUrl} alt={post.message} />
-                <div className='card_button_section'>
-                    <button type="submit" name={`${post.id}/like`} onClick={e => handleClick(e)}>Like</button>
-                    <button type="submit" name={`${post.id}/dislike`} onClick={e => handleClick(e)}>Dislike</button>
+
+                <div className='image_div'>
+                    <img className='card_image' src={post.imageUrl} alt={post.message} />
+                    <div className='card_button_section'>
+                        <button type="submit" name={`${post.id}/like`} onClick={e => handleClick(e)}><span>&#x1F44D;</span> </button>
+                        <button type="submit" name={`${post.id}/dislike`} onClick={e => handleClick(e)}><span>&#x1F44E;</span></button>
+
+
+
+                    </div>
                 </div>
                 <li className='card_body'>{post.createdAt.toString()}</li>
 
@@ -51,11 +58,11 @@ export function Posts() {
 
             <div className='posts_box'>{posts}</div>
             <div className='links_section'>{myData.previous ?
-                <Link onClick={() => setUrlQuery(myData.previous)} to={myData.previous}>Previous</Link> :
+                <Link className='link' onClick={() => setUrlQuery(myData.previous)} to={myData.previous}>Previous</Link> :
                 <></>}
 
                 {myData.next ?
-                    <Link onClick={() => setUrlQuery(myData.next)} to={myData.next}>Next</Link> :
+                    <Link className='link' onClick={() => setUrlQuery(myData.next)} to={myData.next}>Next</Link> :
                     <></>}
             </div>
 

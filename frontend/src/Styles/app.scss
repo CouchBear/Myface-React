@@ -14,9 +14,10 @@ $backgroundColor_black: #151820 !default;
 
 .App {
     background-color: $backgroundColor_grey;
+    width: 375px;
+    height: 600px;
     position: relative;
     display: flex;
     justify-content: center;
-    margin-left: 50px;
 
 }

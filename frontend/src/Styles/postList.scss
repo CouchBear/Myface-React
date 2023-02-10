@@ -1,58 +1,84 @@
 .page {
-    height: 600px;
-    width: 1000px;
-    padding: 20px;
+    height: 90%;
+    width: 100%;
+    padding-left: 3em;
+    padding-right: 3em;
+    margin-top: 1em;
 }
 
 .card {
     height: 250px;
-    width: 80%;
+    width: 100%;
     padding: 0;
 
 }
 
-.card_image {
-    width: 275px;
-    height: 150px;
+.image_div {
+    position: relative;
 }
 
-.card_body {}
+.card_image {
+    width: 100%;
+    height: 150px;
+    // position: relative;
+    z-index: -1;
+}
+
+.card_body {
+    height: 50px;
+    width: 100%;
+    color: white;
+    font-size: 0.75em;
+}
 
 .posts_box {
-    height: 150px;
+    height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 150px);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-
-    // display: flex;
-    // flex-direction: row;
-    // margin-bottom: 20px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 
 
 }
 
 .page_title {
-    font-size: 15px;
+    font-size: 20px;
     color: white;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .links_section {
-    height: 50px;
-    //     margin-top: 0;
+    height: 30px;
 
 }
 
-.card_buttons_section {
-    height: 50px;
-    margin-top: 20px;
-    margin-bottom: 0;
+.link {
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.card_button_section {
+    position: absolute;
+    top: 130px;
 
 }
 
+button {
+    height: 2px;
+    width: 30px;
+    padding: 1em;
+    margin: 0.2em;
+    position: relative;
+
+
+
+}
+
+span {
+    top: 120px;
+
+}
 
 
 

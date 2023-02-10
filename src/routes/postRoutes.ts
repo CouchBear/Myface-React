@@ -1,6 +1,6 @@
 import express from "express";
-import {CreatePostRequest} from "../models/api/createPostRequest";
-import {createPost, dislikePost, getPageOfPosts, likePost} from "../services/postService";
+import { CreatePostRequest } from "../models/api/createPostRequest";
+import { createPost, dislikePost, getPageOfPosts, likePost } from "../services/postService";
 import { body, validationResult } from "express-validator";
 
 const router = express.Router()
@@ -19,15 +19,15 @@ router.post('/create/',
     body('imageUrl').notEmpty(),
     async (request, response) => {
 
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-        return response.status(400).json({errors: errors.array()});
-    }
-    const post = request.body;
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(400).json({ errors: errors.array() });
+        }
+        const post = request.body;
 
-    await createPost(post as CreatePostRequest);
-    return response.sendStatus(200);
-});
+        await createPost(post as CreatePostRequest);
+        return response.sendStatus(200);
+    });
 
 router.post('/:postId/like/', async (request, response) => {
     const userId = 1; // For now, just assume that we are user 1
@@ -35,7 +35,6 @@ router.post('/:postId/like/', async (request, response) => {
     const returnUrl = request.params?.returnUrl;
 
     await likePost(userId, postId);
-
     return response.sendStatus(200);
 });
 
